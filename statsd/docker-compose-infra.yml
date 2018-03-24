@@ -1,0 +1,14 @@
+version: "2"
+services:
+  statsd:
+    image: graphiteapp/graphite-statsd
+    container_name: graphitestatsd
+    volumes:
+      - ./config/statsd/config_udp.js:/opt/statsd/config_udp.js
+      - ./config/graphite/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
+    ports:
+      - "80:80"
+      - "2003-2004:2003-2004"
+      - "2023-2024:2023-2024"
+      - "8125:8125/udp"
+      - "8126:8126"
