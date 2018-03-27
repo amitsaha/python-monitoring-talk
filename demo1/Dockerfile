@@ -6,9 +6,10 @@ RUN set -e; \
 		gcc \
 		libc-dev \
 		linux-headers \
+        apache2-utils \
 	; \
 	pip install -r src/requirements.txt; \
 	apk del .build-deps;
 EXPOSE 5000
-VOLUME /application
-CMD uwsgi --http :5000  --manage-script-name --mount /myapplication=app:app --enable-threads --processes 5
+WORKDIR /application
+CMD ["python", "app.py"]

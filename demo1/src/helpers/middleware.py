@@ -1,4 +1,5 @@
 from flask import request
+import csv
 import time
 
 
@@ -9,8 +10,10 @@ def start_timer():
 def stop_timer(response):
     # convert this into milliseconds for statsd
     resp_time = (time.time() - request.start_time)*1000
-    with open('/tmp/metrics.txt', 'a+') as f:
-        f.write('{0} {1}\n'.format(int(time.time()), resp_time))
+    with open('metrics.csv', 'a', newline='') as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow([str(int(time.time())), str(resp_time)])
+
     return response
 
 
