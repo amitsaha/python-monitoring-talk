@@ -75,6 +75,9 @@ to know that a metric is of type __histogram__ type to be able to allow you to d
 
 ![A histogram metric][histogram-graph.png]
 
+
+## Demo 1
+
 ## Overview of statistics
 
 If we go back to high school mathematics, there were a few things that we probably all can recall
@@ -127,6 +130,7 @@ A __cumulative histogram__ is a histogram with each bucket's count also includin
 bucket - hence the name, _cumulative_. A __cumulative histogram__ for the same data set above looks as follows:
 
 ![Cumulative histogram][cumulative-histogram.png]
+
 
 ### Why do we need statistics?
 
