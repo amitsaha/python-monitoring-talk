@@ -190,7 +190,62 @@ In `Demo 1` above, we observed that there is a lot of data that is generated
 when we report metrics. We need statistics when working with metrics because there are just too many of them. We don't care about individual values, but in the overall behavior. We expect the behavior they exhibit is a proxy of the
 behavior of the system under observation.
 
-## 
+## Adding characteristics to metrics
+
+Cosnsidering our `Demo 1` application above, when we calculate and report a request
+latency, it refers to a specific request uniquely identified by few _characteristics_. Some of these are:
+
+- The HTTP endpoint
+- The HTTP Method
+- The identifier of the host/node it is running on
+
+If we attach these characteristics to a metric observation, we have more context
+around each metric. Let's explore adding characteristics to our metrics in the next
+demo, [Demo 2](https://github.com/amitsaha/python-monitoring-talk/tree/master/demo2).
+
+THe `src/helpers/middleware.py` file now writes multiple columns to the CSV file
+when writing metrics:
+
+```
+node_ids = ['10.0.1.1', '10.1.3.4']
+
+
+def start_timer():
+    request.start_time = time.time()
+
+
+def stop_timer(response):
+    # convert this into milliseconds for statsd
+    resp_time = (time.time() - request.start_time)*1000
+    node_id = node_ids[random.choice(range(len(node_ids)))]
+    with open('metrics.csv', 'a', newline='') as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow([
+            str(int(time.time())), 'webapp1', node_id,
+            request.endpoint, request.method, str(response.status_code),
+            str(resp_time)
+        ])
+
+    return response
+```
+
+As this is a demo, I have taken liberty of reporting one of two random IPs as
+the node IDs when reporting the metric. When we run `docker-compse up` in the
+`demo2` directory, it will result in a CSV file which will have multiple columns.
+
+### Analaysing metrics with `pandas`
+
+We are going to now analyse this CSV file with [pandas](https://pandas.pydata.org/).
+When we run `docker-compose up`, we will see a URL printed which we will use
+to open up a a [Jupyter]() session. Once we upload the `Analysis` notebook into
+the session, we can read the CSV file into a pandas DataFrame:
+
+```
+
+```
+
+Since each characteristic we added is a column in the DataFrame, we can perform
+grouping and aggregation based on these columns:
 
 ## What should I monitor
 
@@ -243,7 +298,7 @@ with it.
 
 ## Integrating monitoring in your Python application
 
-There are two components involved in integrating monitoring into your Python applications (See figure):
+There are two components involved in integrating monitoring into your Python applications:
 
 * Update your application to calculate and report metrics
 * Setup a monitoring infrastructure to house your application's metrics and allow queries to be made against them
@@ -266,12 +321,15 @@ def work():
 
 Considering the above pattern, we will often find that we take advantage
 of _decorators_, _context managers_ and _middleware_ (for network applications) to
-calculate and report metrics.
+calculate and report metrics. In Demo1 and Demo 2 above, we saw how we used
+decorators in a Flask application.
 
-### Pull and Push models
+### Pull and Push models for metric reporting
 
+Essentially, there are two patterns for reporting metrics from a Python application:
+![Pull and Push Models][pull_push_model.png]
 
-![Pull and Push Models][pull-push.png]
+An example of a monitoring system
 
 
 
@@ -311,43 +369,7 @@ app.after_request(record_request_data)
 app.after_request(stop_timer)
 ```
 
-### Integrating statsd into a Flask application
-
-Given an `app` Flask application object, we can calculate and report two example metrics as follows:
-
-
-### Timing sections of code
-
-
-
-**statsd**
-
-
-```python
-from statsd import StatsClient
-
-statsd = StatsClient()
-
-@statsd.timer('process_event')
-def process_event(event):
-    # process event
-
-```
-
-**prometheus**
-
-```python
-h = Histogram('processing_latency', 'Latency for processing request')
-@h.time()
-def process_event(event):
-    # process event
-```
-
-
-- Demos
-- Migrating from statsd to prometheus without changing application code
-
-## Uses of metrics
+# Uses of metrics
 
 We briefly learned why we may want to setup monitoring in our applications. In this section,
 we will look a bit deeper into two of these in this section.
