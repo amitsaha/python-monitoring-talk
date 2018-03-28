@@ -25,6 +25,6 @@ def handle_500(error):
 if __name__ == '__main__':
     with open('metrics.csv', 'w', newline='') as f:
         csvwriter = csv.writer(f)
-        csvwriter.writerow(['timestamp', 'metric_name'])
+        csvwriter.writerow(['timestamp', 'request_latency'])
 
     app.run(host="0.0.0.0")

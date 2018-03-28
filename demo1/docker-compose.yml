@@ -2,7 +2,7 @@ version: "2"
 services:
   webapp:
     build: ./
-    image: amitsaha/flask_app:demo2
+    image: amitsaha/flask_app:demo1
     container_name: webapp 
     expose:
       - 5000
