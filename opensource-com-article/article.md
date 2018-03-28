@@ -78,6 +78,58 @@ to know that a metric is of type __histogram__ type to be able to allow you to d
 
 ## Demo 1
 
+[Demo 1](https://github.com/amitsaha/python-monitoring-talk/tree/master/demo1) is
+a basic web application written using the [Flask](http://flask.pocoo.org/) framework. It demonstrates how we can _calculate_ and _report_ metrics.
+
+The `src` directory has the application in `app.py` with the `src/helpers/middleware.py` containing the following:
+
+```
+
+from flask import request
+import csv
+import time
+
+
+def start_timer():
+    request.start_time = time.time()
+
+
+def stop_timer(response):
+    # convert this into milliseconds for statsd
+    resp_time = (time.time() - request.start_time)*1000
+    with open('metrics.csv', 'a', newline='') as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow([str(int(time.time())), str(resp_time)])
+
+    return response
+
+
+def setup_metrics(app):
+    app.before_request(start_timer)
+    app.after_request(stop_timer)
+```
+
+When `setup_metrics()` is called from the application, it configures the
+`start_timer()` function to be called before a request is processed and
+the `stop_timer()` function to be called after a request is processed
+but before the response has been sent. In the above function, we write
+the `timestamp` and the time it took (in milliseconds) for the request
+to be processed.
+
+When we run `docker-compose up` in the `demo1` directory, it starts the web 
+application and then starts a client container which makes a number of requests
+to this web application. You will see a file `src/metrics.csv` that has been
+created with two columns: `timestamp` and `request_latency`.
+
+Looking at this file, we can infer two things:
+
+- There is a lot of data that has been generated
+- Each observation of the metric doesn't have any characteristic associated with it
+
+Without characteristic associated with a metric observation, we cannot say which
+HTTP endpoint this metric was associated with or which node of the application
+this metric was generated from. Hence, we need to qualify each metric observation with the appropriate metadata.
+
 ## Overview of statistics
 
 If we go back to high school mathematics, there were a few things that we probably all can recall
@@ -134,10 +186,11 @@ bucket - hence the name, _cumulative_. A __cumulative histogram__ for the same d
 
 ### Why do we need statistics?
 
-We need statistics when working with metrics because there are just too many of them. We don't care about
-individual values, but in the overall behavior. We expect the behavior they exhibit is a proxy of the
+In `Demo 1` above, we observed that there is a lot of data that is generated
+when we report metrics. We need statistics when working with metrics because there are just too many of them. We don't care about individual values, but in the overall behavior. We expect the behavior they exhibit is a proxy of the
 behavior of the system under observation.
 
+## 
 
 ## What should I monitor
 
