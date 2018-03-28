@@ -2,7 +2,7 @@ version: "2"
 services:
   webapp:
     build: ./
-    image: amitsaha/flask_app:demo
+    image: amitsaha/flask_app:demo2
     container_name: webapp 
     expose:
       - 5000
@@ -19,11 +19,11 @@ services:
   analyzer:
     depends_on:
       - client
-    build:
-      context: ./
-      dockerfile: Dockerfile-analysis
-    image: amitsaha/analyser
+    expose:
+      - 8888
+    ports:
+      - 8888:8888
+    image: jupyter/datascience-notebook
     container_name: analyser
     volumes:
       - ./src:/data/
-
