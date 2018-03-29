@@ -2,7 +2,7 @@
 
 ## Slides
 
-- (Sydney Python Meetup)[]
+- (Sydney Python Meetup)[./slides/sypy.pdf]
 
 ## Articles
 
