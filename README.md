@@ -35,4 +35,3 @@ Make 100 requests with a concurrency of 3:
 $ ab -n 100 -c 3 http://localhost:5000/test/
 
 ```
-
