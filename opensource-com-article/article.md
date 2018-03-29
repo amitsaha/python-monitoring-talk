@@ -237,15 +237,24 @@ the node IDs when reporting the metric. When we run `docker-compse up` in the
 
 We are going to now analyse this CSV file with [pandas](https://pandas.pydata.org/).
 When we run `docker-compose up`, we will see a URL printed which we will use
-to open up a a [Jupyter]() session. Once we upload the `Analysis` notebook into
+to open up a a [Jupyter](http://jupyter.org/) session. Once we upload the `Analysis.ipynb` notebook into
 the session, we can read the CSV file into a pandas DataFrame:
 
 ```
-
+import pandas as pd
+metrics = pd.read_csv('/data/metrics.csv', index_col=0)
 ```
+
+The `index_col` specifies that we want to use the `timestamp` as the index.
 
 Since each characteristic we added is a column in the DataFrame, we can perform
 grouping and aggregation based on these columns:
+
+```
+import numpy as np
+metrics.groupby(['node_id', 'http_status']).latency.aggregate(np.percentile, 99.999)
+```
+
 
 ## What should I monitor
 
@@ -405,6 +414,13 @@ def metrics():
 The demo application [promtheus](https://github.com/amitsaha/python-monitoring-talk/tree/master/promtheus) is
 a complete example of intgerating and Python Flask application with `prometheus`.
 
+## Statsd or Prometheus?
+
+I have written a few articles on this topic and I think you may find them useful:
+
+- [Your options for monitoring multi-process Python applications with Prometheus](http://echorand.me/your-options-for-monitoring-multi-process-python-applications-with-prometheus.html)
+- [Monitoring Your Synchronous Python Web Applications Using Prometheus](https://blog.codeship.com/monitoring-your-synchronous-python-web-applications-using-prometheus/)
+- [Monitoring Your Asynchronous Python Web Applications Using Prometheus](https://blog.codeship.com/monitoring-your-asynchronous-python-web-applications-using-prometheus/)
 
 
 # Uses of metrics
@@ -448,7 +464,7 @@ An example of getting started with distributed tracing in Python is shown in my
 I will end this article with the following points that we should keep in mind:
 
 - Understand what a metric type means in your monitoring system
-- Undersand what unit of measurement they want your data be sent in
+- Undersand what unit of measurement the monitoring system want your data to be in
 - Monitor the most critical components of your application
 - Monitor the behavior of your application in its most critical stages
 
