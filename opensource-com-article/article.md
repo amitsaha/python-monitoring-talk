@@ -326,48 +326,86 @@ decorators in a Flask application.
 
 ### Pull and Push models for metric reporting
 
-Essentially, there are two patterns for reporting metrics from a Python application:
+Essentially, there are two patterns for reporting metrics from a Python application. In the _pull_
+model, the monitoring system "scrapes" the application at a pre-defined HTTP endpoint. In the
+_push_ model, the application sends the data to the monitoring system.
+
 ![Pull and Push Models][pull_push_model.png]
 
-An example of a monitoring system
+An example of a monitoring system working in the _pull_ model is [prometheus](https://prometheus.io/).
+[statsd](https://github.com/etsy/statsd) is an example of a monitoring system where the application pushes the
+metrics to the system.
+
+### Integrating `statsd`
+
+To integrate `statsd` into a Python application, we would use the [python client](https://pypi.python.org/pypi/statsd)
+and then update our metric reporting code to push data into statsd using the appropriate library calls.
+
+First, we will need to create a `client` instance:
+
+```
+statsd = statsd.StatsClient(host='statsd', port=8125, prefix='webapp1')
+```
+
+The `prefix` keyword argument will add the specified `prefix` to all the metrics
+reported via this client.
+
+Once we have the client, we can report a value for a `timer` using:
+
+```
+statsd.timing(key, resp_time)
+```
+
+To increment a counter:
+
+```
+statsd.incr(key)
+```
+
+To associate metadata with a metric, a key is defined as `metadata1.metadata2.metric` where each
+`metadataX` is a field which allows aggregation and grouping.
+
+The demo application [statsd](https://github.com/amitsaha/python-monitoring-talk/tree/master/statsd) is
+a complete example of intgerating and Python Flask application with `statsd`.
 
 
+### Integrating prometheus
 
-### Integrating `statsd` into a Flask application
-
-
-
-
-### Integrating prometheus into a Flask application
-
-
-Given an `app` Flask application object, we can report calculate two example metrics as follows:
-
+To use the prometheus monitoring system, we will use the prometheus [python client](https://pypi.python.org/pypi/prometheus_client).
+We will first create objects of the appropriate metric class:
 
 ```python
 
-REQUEST_COUNT = Counter(
-    'request_count', 'App Request Count',
-    ['app_name', 'method', 'endpoint', 'http_status']
-)
 REQUEST_LATENCY = Histogram('request_latency_seconds', 'Request latency',
     ['app_name', 'endpoint']
 )
-
-def start_timer():
-    request.start_time = time.time()
-
-def stop_timer(response):
-    resp_time = time.time() - request.start_time
-    REQUEST_LATENCY.labels('webapp', request.path).observe(resp_time)
-    return response
-
-# Register as middleware
-
-app.before_request(start_timer)
-app.after_request(record_request_data)
-app.after_request(stop_timer)
 ```
+
+The third argument in the above statements are the `labels` associated with
+the metric. These `labels` are what defines the metadata associated with
+a single metric value.
+
+To record a specific metric observation, we do:
+
+```
+
+REQUEST_LATENCY.labels('webapp', request.path).observe(resp_time)
+```
+
+The next step is to define a HTTP endpoint in our application which prometheus can
+scrape. This is usually an endpoint called `/metrics`:
+
+```
+@app.route('/metrics')
+def metrics():
+    return Response(prometheus_client.generate_latest(), mimetype=CONTENT_TYPE_LATEST)
+```
+
+
+The demo application [promtheus](https://github.com/amitsaha/python-monitoring-talk/tree/master/promtheus) is
+a complete example of intgerating and Python Flask application with `prometheus`.
+
+
 
 # Uses of metrics
 
