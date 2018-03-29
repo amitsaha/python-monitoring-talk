@@ -27,8 +27,7 @@ Let's get started!
 
 ## Software Pre-requisites
 
-I discuss a number of demos in the article, all of which can be found at [this repo](https://github.com/amitsaha/python-monitoring-talk). You will need `docker` and `docker-compose` to be installed to follow
-these along.
+I discuss a number of demos in the article, all of which can be found at [this repo](https://github.com/amitsaha/python-monitoring-talk). You will need `docker` and `docker-compose` to be installed to play with them.
 
 ## Why should I monitor?
 
@@ -43,10 +42,12 @@ The top reasons for monitoring are:
 
 ## Metric and Metric types
 
-Let's start with learning what is a __metric__.  A __metric__ for our purposes is a _observed_ value of a certain 
-quantity at a given point of _time_. The total number hits on a blog post, the total number of people in a talk,
-the number of times the data was not found in caching system, the number of logged-in users on your website are all 
-examples of metrics. They broadly fall into these categories:
+Let's start with learning what is a __metric__.  A __metric__ for our purposes is a _observed_ 
+value of a certain quantity at a given point of _time_. The total number hits on a blog post, 
+the total number of people in a talk, the number of times the data was not found in caching system, 
+the number of logged-in users on your website are all examples of metrics. 
+
+They broadly fall into these categories:
 
 **Counter**
 
@@ -59,11 +60,10 @@ lifetime of your blog post. Graphically, a counter looks like this:
 
 **Gauge**
 
-Instead of the total number of hits on your blog post, let's say we want to track the number of hits per day or 
-per week. This is a metric whose value can go up or down and is referred to as a __gauge__.
+Instead of the total number of hits on your blog post, let's say we want to track the number of hits 
+per day or per week. This is a metric whose value can go up or down and is referred to as a __gauge__.
 
 Graphically, a gauge looks like this:
-
 
 ![A gauge metric can increase or decrease][gauge-graph.png]
 
@@ -85,12 +85,13 @@ to know that a metric is of type __histogram__ type to be able to allow you to d
 ## Demo 1
 
 [Demo 1](https://github.com/amitsaha/python-monitoring-talk/tree/master/demo1) is
-a basic web application written using the [Flask](http://flask.pocoo.org/) framework. It demonstrates how we can _calculate_ and _report_ metrics.
+a basic web application written using the [Flask](http://flask.pocoo.org/) framework. 
+It demonstrates how we can _calculate_ and _report_ metrics.
 
-The `src` directory has the application in `app.py` with the `src/helpers/middleware.py` containing the following:
+The `src` directory has the application in `app.py` with the `src/helpers/middleware.py` 
+containing the following:
 
 ```
-
 from flask import request
 import csv
 import time
@@ -134,7 +135,8 @@ Looking at this file, we can infer two things:
 
 Without characteristic associated with a metric observation, we cannot say which
 HTTP endpoint this metric was associated with or which node of the application
-this metric was generated from. Hence, we need to qualify each metric observation with the appropriate metadata.
+this metric was generated from. Hence, we need to qualify each metric observation 
+with the appropriate metadata.
 
 ## Overview of statistics
 
@@ -154,7 +156,6 @@ The __median__ is another form of average, but is calculated differently. For ou
 the median is 3. The calculation is not very straightforward - it depends on the number of items
 in the list.
 
-
 ### Percentile
 
 The __percentile__ is a measure which gives us a measure below which a certain, `k` percentage of the
@@ -167,14 +168,16 @@ Some monitoring systems refer to the percentile measure as `upper_X` where _X_ i
 
 ### Quantile
 
-The __q-Quantile__ is a measure which ranks q*N in a set of N numbers. The value of __q__ ranges between 0 and 1 
-(both inclusive). When _q__ is 0.5, the value is the __median__. The relationship between the quantile and
-percentile is that the measure at __q__ quantile is equivalent to the measure at __100*q__ percentile.
+The __q-Quantile__ is a measure which ranks q*N in a set of N numbers. The value of __q__ ranges 
+between 0 and 1 (both inclusive). When _q__ is 0.5, the value is the __median__. 
+The relationship between the quantile and percentile is that the measure at __q__ quantile 
+is equivalent to the measure at __100*q__ percentile.
 
 ### Histogram
 
 The metric of type __histogram__ which we learned about earlier is an _implementation detail_ of monitoring
-systems. In statistics, a __histogram__ is a graph that groups data into _buckets_. Let's consider a different contrived example 
+systems. In statistics, a __histogram__ is a graph that groups data into _buckets_. 
+Let's consider a different contrived example 
 now - age of a group of people reading your blog. If you somehow managed to get a handful of this data 
 and wanted a rough idea of the age group your readers belonged to, plotting a __histogram__ would show you
 a graph like this:
