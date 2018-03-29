@@ -1,4 +1,4 @@
-## Introduction
+# Counter, Gauge, Upper 90 - Oh my! Metrics, Monitoring and Python
 
 My reaction when I first came across the terms `counter` and `gauge` and the graphite
 dashboards with various colors with numbers labelled mean and upper 90 was one of avoidance.
@@ -9,8 +9,9 @@ require me to pay attention to them. Hence, they remained ignored.
 That was around 2 years back. Then my role organically
 started changing - rather I started changing it proactively and then I reached a point where
 I wanted to ask a lot of questions about our network applications and get answers to them.
-And that is where, I started learning about `metrics`. Today's post (and soon to be my talk
-at PyCon US 2018) is about what I have learned so far. 
+And that is where, I started learning about `metrics`. Today's post (and soon to be my 
+[talk](https://us.pycon.org/2018/schedule/presentation/133/) at PyCon US 2018) is about 
+what I have learned so far. 
 
 The three stages that I have gone through so far in my personal monitoring journey can be said
 to be:
@@ -23,6 +24,11 @@ I am currently in _Stage 2_ and today I will be sharing what I have learned so f
 I have also been trying to do some _Stage 3_ readings which I will share at the end.
 
 Let's get started!
+
+## Software Pre-requisites
+
+I discuss a number of demos in the article, all of which can be found at [this repo](https://github.com/amitsaha/python-monitoring-talk). You will need `docker` and `docker-compose` to be installed to follow
+these along.
 
 ## Why should I monitor?
 
