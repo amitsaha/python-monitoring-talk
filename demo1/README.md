@@ -19,8 +19,20 @@ supplies two decorator functions for this purpose:
 The [src](./src) sub-directory contains the application code. The main application is defined in [app.py](./src/app.py) with
 the middleware functions defined in [helpers/middleware.py](./src/helpers/middleware.py). 
 
-### Walkthrough of `app.py`
+### Key snippets from `app.py`
 
+The `setup_metrics()` function defined in the `middleware.py` file is called with the `app` instance we created for our
+application to register the appropriates function to be called:
+
+```
+from helpers.middleware import setup_metrics
+..
+app = Flask(__name__)
+setup_metrics(app)
+..
+```
+
+As far as our metrics reporting is 
 ### Walkthrough of `middleware.py`
 
 
