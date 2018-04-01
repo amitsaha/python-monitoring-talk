@@ -16,8 +16,16 @@ supplies two decorator functions for this purpose:
 - [after_request](http://flask.pocoo.org/docs/0.12/api/#flask.Flask.after_request) allows executing code after a request is
   processed (but before a response is returned)
 
+The [src](./src) sub-directory contains the application code. The main application is defined in [app.py](./src/app.py) with
+the middleware functions defined in [helpers/middleware.py](./src/helpers/middleware.py). 
 
-## Setup
+### Walkthrough of `app.py`
+
+### Walkthrough of `middleware.py`
+
+
+
+## Run demo
 
 - Install `docker` and `docker-compose`
 - `$ sudo docker-compose up`
