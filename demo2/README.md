@@ -35,9 +35,7 @@ def stop_timer(response):
 ```
 
 
-
-
-## Setup
+## Run demo
 
 - Install `docker` and `docker-compose`
 - `$ sudo docker-compose up`
@@ -47,4 +45,4 @@ def stop_timer(response):
 `docker-compose` run will print a URL which you can copy-paste into the browser on
 our host.
 
-Then, open the `Analysis` Jupyter Notebook by navigating to the `demo1` directory.
+Then, open the `Analysis` Jupyter Notebook by navigating to the `demo2` directory.
