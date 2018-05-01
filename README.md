@@ -58,13 +58,17 @@ $ vagrant up
 $ vagrant ssh
 ```
 
-Now, that we are in the VM, please see each of the demos sub-directory below for instructions:
+
+Now, that we are in the VM, the `/vagrant` directory has a copy of the entire repository from where you
+can play with the demos:
 
 - [demo1](./demo1)
 - [demo2](./demo2)
 - [statsd](./statsd)
 - [promtheus](./prometheus)
 - [statsd_prometheus](./statsd_prometheus)
+
+Each demo directory above has a README explaining the instructions of playing with the demo.
 
 ## Notes to self
 
