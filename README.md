@@ -16,7 +16,7 @@
 I recommend using a VM to play with the demos. This repo ships with a [Vagrantfile])(). Please install
 [Vagrant]() for your operating system and then:
 
-### Windows 10 with Hyper-V
+### VM Setup on Windows 10 with Hyper-V
 
 You will need to open a powershell session as Adminstrator and do the following from a clone of 
 the git repository:
@@ -43,17 +43,22 @@ Bringing machine 'default' up with 'hyperv' provider...
 ==> default: Waiting for the machine to report its IP address...
     default: Timeout: 120 seconds
 ```
+
+Then, we will `ssh` into the VM using:
+
+```
+C:\> ~\work\github.com\amitsaha\python-monitoring-talk [master ≡]> vagrant ssh
+```
     
-    
-### Windows/Linux/OS X - VirtualBox
+### VM Setup on Windows/Linux/OS X - VirtualBox
 
 ```
 $ vagrant up
+...
+$ vagrant ssh
 ```
 
-
-
-You will need `docker` and `docker-compse` installed. The following demos are available:
+Now, that we are in the VM, please see each of the demos sub-directory below for instructions:
 
 - [demo1](./demo1)
 - [demo2](./demo2)
