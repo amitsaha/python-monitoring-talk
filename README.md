@@ -62,6 +62,15 @@ $ vagrant ssh
 Now, that we are in the VM, the `/vagrant` directory has a copy of the entire repository from where you
 can play with the demos:
 
+```
+$ cd /vagrant
+$ ls
+demo1  LICENSE                 prometheus  scripts  statsd             Vagrantfile
+demo2  opensource-com-article  README.md   slides   statsd_prometheus
+```
+
+Demos:
+
 - [demo1](./demo1)
 - [demo2](./demo2)
 - [statsd](./statsd)
