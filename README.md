@@ -13,6 +13,46 @@
 
 ## Playing with the demos
 
+I recommend using a VM to play with the demos. This repo ships with a [Vagrantfile])(). Please install
+[Vagrant]() for your operating system and then:
+
+### Windows 10 with Hyper-V
+
+You will need to open a powershell session as Adminstrator and do the following from a clone of 
+the git repository:
+
+```
+C:\> ~\work\github.com\amitsaha\python-monitoring-talk [master ≡]> vagrant up --provider=hyperv
+Bringing machine 'default' up with 'hyperv' provider...
+==> default: Verifying Hyper-V is enabled...
+==> default: Importing a Hyper-V instance
+    default: Please choose a switch to attach to your Hyper-V instance.
+    default: If none of these are appropriate, please open the Hyper-V manager
+    default: to create a new virtual switch.
+    default:
+    default: 1) Default Switch
+    default: 2) nat
+    default: 3) minikube-virtualswitch
+    default:
+    default: What switch would you like to use? 1
+    default: Cloning virtual hard drive...
+    default: Creating and registering the VM...
+    default: Setting VM Integration Services
+    default: Successfully imported a VM with name: ubuntu-18.04-amd64_1
+==> default: Starting the machine...
+==> default: Waiting for the machine to report its IP address...
+    default: Timeout: 120 seconds
+```
+    
+    
+### Windows/Linux/OS X - VirtualBox
+
+```
+$ vagrant up
+```
+
+
+
 You will need `docker` and `docker-compse` installed. The following demos are available:
 
 - [demo1](./demo1)
