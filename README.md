@@ -90,15 +90,28 @@ You can find the IP address of your VM by executing the following command from t
 $ vagrant ssh-config
 ```
 
-## Notes to self
+## Miscellaneous notes
+
+
 
 ### Docker tips
 
 Rebuild an image:
 
 ```
-$ docker-compose -f docker-compose.yml build
+$ sudo docker-compose -f docker-compose.yml build
 ```
+
+If you see errors such as:
+
+```ERROR: for webapp  Cannot create container for service webapp: Conflict. The container name "/webapp" is already in use by container "2e452aa1622b053fe33c6fe508ddce3f207e8a8c7446564f86e6f31c2d81466c". You have to remove (or rename) that container to be able to reuse that name.```
+
+You can do:
+
+```
+$ sudo docker rm webapp
+```
+
 
 ### ab tips
 
