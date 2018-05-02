@@ -13,7 +13,63 @@
 
 ## Playing with the demos
 
-You will need `docker` and `docker-compse` installed. The following demos are available:
+I recommend using a VM to play with the demos. This repo ships with a [Vagrantfile])(). Please install
+[Vagrant]() for your operating system and then:
+
+### VM Setup on Windows 10 with Hyper-V
+
+You will need to open a powershell session as Adminstrator and do the following from a clone of 
+the git repository:
+
+```
+C:\> ~\work\github.com\amitsaha\python-monitoring-talk [master ≡]> vagrant up --provider=hyperv
+Bringing machine 'default' up with 'hyperv' provider...
+==> default: Verifying Hyper-V is enabled...
+==> default: Importing a Hyper-V instance
+    default: Please choose a switch to attach to your Hyper-V instance.
+    default: If none of these are appropriate, please open the Hyper-V manager
+    default: to create a new virtual switch.
+    default:
+    default: 1) Default Switch
+    default: 2) nat
+    default: 3) minikube-virtualswitch
+    default:
+    default: What switch would you like to use? 1
+    default: Cloning virtual hard drive...
+    default: Creating and registering the VM...
+    default: Setting VM Integration Services
+    default: Successfully imported a VM with name: ubuntu-18.04-amd64_1
+==> default: Starting the machine...
+==> default: Waiting for the machine to report its IP address...
+    default: Timeout: 120 seconds
+```
+
+Then, we will `ssh` into the VM using:
+
+```
+C:\> ~\work\github.com\amitsaha\python-monitoring-talk [master ≡]> vagrant ssh
+```
+    
+### VM Setup on Windows/Linux/OS X - VirtualBox
+
+```
+$ vagrant up
+...
+$ vagrant ssh
+```
+
+
+Now, that we are in the VM, the `/vagrant` directory has a copy of the entire repository from where you
+can play with the demos:
+
+```
+$ cd /vagrant
+$ ls
+demo1  LICENSE                 prometheus  scripts  statsd             Vagrantfile
+demo2  opensource-com-article  README.md   slides   statsd_prometheus
+```
+
+Demos:
 
 - [demo1](./demo1)
 - [demo2](./demo2)
@@ -21,15 +77,41 @@ You will need `docker` and `docker-compse` installed. The following demos are av
 - [promtheus](./prometheus)
 - [statsd_prometheus](./statsd_prometheus)
 
-## Notes to self
+Each demo directory above has a README explaining the instructions of playing with the demo. In general,
+to access a network port running in the virtual machine, use the following address in your browser:
+
+```
+<IP Address of your VM>:port
+```
+
+You can find the IP address of your VM by executing the following command from the root of this repository:
+
+```
+$ vagrant ssh-config
+```
+
+## Miscellaneous notes
+
+
 
 ### Docker tips
 
 Rebuild an image:
 
 ```
-$ docker-compose -f docker-compose.yml build
+$ sudo docker-compose -f docker-compose.yml build
 ```
+
+If you see errors such as:
+
+```ERROR: for webapp  Cannot create container for service webapp: Conflict. The container name "/webapp" is already in use by container "2e452aa1622b053fe33c6fe508ddce3f207e8a8c7446564f86e6f31c2d81466c". You have to remove (or rename) that container to be able to reuse that name.```
+
+You can do:
+
+```
+$ sudo docker rm webapp
+```
+
 
 ### ab tips
 
