@@ -77,7 +77,18 @@ Demos:
 - [promtheus](./prometheus)
 - [statsd_prometheus](./statsd_prometheus)
 
-Each demo directory above has a README explaining the instructions of playing with the demo.
+Each demo directory above has a README explaining the instructions of playing with the demo. In general,
+to access a network port running in the virtual machine, use the following address in your browser:
+
+```
+<IP Address of your VM>:port
+```
+
+You can find the IP address of your VM by executing the following command from the root of this repository:
+
+```
+$ vagrant ssh-config
+```
 
 ## Notes to self
 
