@@ -1,4 +1,4 @@
-# Demo 2
+ Demo 2
 
 This demo builds upon [Demo 1](../demo1). It demonstrates:
 
@@ -37,7 +37,6 @@ def stop_timer(response):
 
 ## Run demo
 
-- Install `docker` and `docker-compose`
 - `$ sudo docker-compose up`
 
 ## Play with the data
