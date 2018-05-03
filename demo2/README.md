@@ -1,4 +1,4 @@
- Demo 2
+# Demo 2
 
 This demo builds upon [Demo 1](../demo1). It demonstrates:
 
