@@ -11,3 +11,11 @@ services:
       - 5000:5000
     volumes:
       - ./src:/application
+  client:
+    depends_on:
+      - webapp
+    build:
+      context: ./
+      dockerfile: Dockerfile-client
+    image: amitsaha/flask_app:client
+    container_name: client
