@@ -46,7 +46,13 @@ def stop_timer(response):
 
 ## Run demo
 
-- `$ sudo docker-compose up`
+```
+$ sudo docker-compose -f docker-compose.yml -f docker-compose-infra.yml up
+```
 
 ## Play with the data
 
+If we now go to the address `http://<VM IP address>>` on  your host machine, you will
+see a [graphite browser window](http://graphite.readthedocs.io/en/latest/overview.html).
+
+Once you are there, we can play with the metrics that our application pushed.
