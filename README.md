@@ -13,8 +13,8 @@
 
 ## Playing with the demos
 
-I recommend using a VM to play with the demos. This repo ships with a [Vagrantfile])(./Vagrantfile). Please install
-[Vagrant](https://vagrantup.com) for your operating system and then:
+I recommend using a VM to play with the demos. This repo ships with a [Vagrantfile](./Vagrantfile)
+for installing Ubuntu 16.04. Please install [Vagrant](https://vagrantup.com) for your operating system and then:
 
 ### VM Setup on Windows 10 with Hyper-V
 
