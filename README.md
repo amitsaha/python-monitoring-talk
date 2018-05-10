@@ -7,6 +7,7 @@
 ## Articles
 
 - [Understanding metrics and monitoring with Python](https://opensource.com/article/18/4/metrics-monitoring-and-python)
+- [Exploring Security, Metrics, and Error-handling with gRPC in Python](https://blog.codeship.com/exploring-security-metrics-and-error-handling-with-grpc-in-python/)
 - [Your options for monitoring multi-process Python applications with Prometheus](http://echorand.me/your-options-for-monitoring-multi-process-python-applications-with-prometheus.html)
 - [Monitoring Your Synchronous Python Web Applications Using Prometheus](https://blog.codeship.com/monitoring-your-synchronous-python-web-applications-using-prometheus/)
 - [Monitoring Your Asynchronous Python Web Applications Using Prometheus](https://blog.codeship.com/monitoring-your-asynchronous-python-web-applications-using-prometheus/)
