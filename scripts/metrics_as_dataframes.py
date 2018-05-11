@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+import time
 
 # seed values
 app_prefix= ['webapp']
@@ -9,8 +10,12 @@ node_ids = ['10.1.1.30', '10.3.2.30']
 http_endpoints = ['test1', 'test2']
 http_methods = ['POST', 'GET']
 http_statuses = ['200', '400', '500']
-timestamps = pd.date_range('25/3/2018', periods=10000, freq='10S')
-timestamps_unix = timestamps.view('int64') // pd.Timedelta(1, unit='s')
+# FIXME: the following leads to negative timestamps when plotted in
+# matplotlib
+# timestamps = pd.date_range('25/3/2018', periods=10000, freq='10S')
+# timestamps_unix = timestamps.view('int') // pd.Timedelta(1, unit='s')
+
+timestamps_unix = [time.time() for _ in range(10000)]
 
 metrics = pd.DataFrame({
     'app_prefix': [app_prefix[random.choice(range(len(app_prefix)))] for _ in range(10000)],
@@ -35,8 +40,10 @@ print(metrics.groupby(['http_endpoint', 'http_method']).latency.aggregate(np.per
 
 plt.xkcd()
 # Rolling average
-rolling_average = metrics.rolling(window=5000, center=False, on='latency').mean()
-rolling_average.plot(title='Rolling average over 30 seconds', use_index=True)
+latency = metrics['latency']
+rolling_average = latency.rolling(window=100, center=False, min_periods=1).mean()
+print(rolling_average)
+rolling_average.plot(title='Rolling average over 100 observations', use_index=True)
 
 # Histogram plot of latency
 metrics.plot.hist(y='latency')
