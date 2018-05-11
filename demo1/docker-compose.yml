@@ -26,4 +26,4 @@ services:
     image: jupyter/datascience-notebook
     container_name: analyser
     volumes:
-      - ./src:/data/
+      - ./src:/src
