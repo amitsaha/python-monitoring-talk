@@ -82,14 +82,10 @@ Each demo directory above has a README explaining the instructions of playing wi
 to access a network port running in the virtual machine, use the following address in your browser:
 
 ```
-<IP Address of your VM>:port
+$ 127.0.0.1:port
 ```
 
-You can find the IP address of your VM by executing the following command from the root of this repository:
-
-```
-$ vagrant ssh-config
-```
+If it doesn't work, please file an issue with OS + VM details.
 
 ## Miscellaneous notes
 
