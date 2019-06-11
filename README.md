@@ -1,5 +1,9 @@
 # Materials for my talks/articles on Python monitoring
 
+## Videos
+
+- [PyCOn 2018](https://www.youtube.com/watch?reload=9&v=R4kMwckrUlg)
+
 ## Slides
 
 - [PyCon 2018](./slides/pycon-2018.pdf)
