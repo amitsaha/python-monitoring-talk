@@ -148,6 +148,7 @@ The following resources are some of the ones that I found very useful:
 - [Monitoring batch jobs in Python](https://www.robustperception.io/monitoring-batch-jobs-in-python/)
 - [Promtheus monitoring at soundcloud](https://developers.soundcloud.com/blog/prometheus-monitoring-at-soundcloud)
 - [Why are Prometheus histograms cumulative?](https://www.robustperception.io/why-are-prometheus-histograms-cumulative/)
+- [Capturing spikes](https://utcc.utoronto.ca/~cks/space/blog/sysadmin/PrometheusSubqueriesForSpikes)
 
 ## Stage 3 Readings: Doing things right
 
