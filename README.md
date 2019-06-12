@@ -133,6 +133,8 @@ The following resources are some of the ones that I found very useful:
 - [Monitoring Distributed Systems](https://landing.google.com/sre/book/chapters/monitoring-distributed-systems.html)
 - [Monitoring best practices](http://www.integralist.co.uk/posts/monitoring-best-practices/?imm_mid=0fbebf&cmp=em-webops-na-na-newsltr_20180309)
 - [Who wants seconds?](https://www.robustperception.io/who-wants-seconds/)
+- [Monitoring: Not just for outages](https://www.robustperception.io/monitoring-not-just-for-outages)
+- [Avoid the wall of graphs](https://www.robustperception.io/avoid-the-wall-of-graphs)
 
 ### Statsd/Graphite
 
