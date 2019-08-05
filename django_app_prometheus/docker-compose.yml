@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  webapp:
+  webapp.example.com:
     image: amitsaha/til:prometheus
     build: .
     container_name: webapp 
