@@ -6,12 +6,6 @@ volumes:
     grafana_data: {}
 
 services:
-  stastd:
-    image: prom/statsd-exporter
-    container_name: statsd
-    expose:
-      - 9125
-      - 9102
   prometheus:
     image: prom/prometheus
     container_name: prometheus

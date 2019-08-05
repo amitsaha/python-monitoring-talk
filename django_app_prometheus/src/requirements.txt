@@ -1,2 +1,4 @@
 Django
 django-bootstrap3
+django-prometheus
+gunicorn
