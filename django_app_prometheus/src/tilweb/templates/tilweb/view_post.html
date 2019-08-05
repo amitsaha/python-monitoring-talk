@@ -1,0 +1,20 @@
+{% extends 'tilweb/base.html' %}
+
+{% block content %}
+<div class="container" style="width:40%">
+    <h3>{{post.subject|title}}</h3>
+    <h4>By <i>{{post.author.username}} </i></h4>
+    {% if tags %}
+    <h4>Tags: 
+        {% for tag in tags %}
+        <a href="/tag/{{tag.tag.tag}}/">{{tag.tag.tag}}</a>
+        </i>
+        {% endfor %}
+        {% endif %}
+
+    </h4>
+        <p><i>Published on </i> {{ post.post_date }} </p>
+
+    <p> {{post.content}} </p>
+</div>
+{% endblock %}

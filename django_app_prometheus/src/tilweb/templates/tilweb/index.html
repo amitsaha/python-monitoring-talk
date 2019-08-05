@@ -1,0 +1,23 @@
+{% extends 'tilweb/base.html' %}
+
+{% block content %}
+<div class="container"
+  <div class="jumbotron">
+    <h1>TIL: Your personal learning journal</h1>
+    </div>
+</div>
+
+<div class="container" style="width:40%">
+<h3> Already a member? </h3>
+
+<a href="/login/"> Login </a>
+<h3> Join TIL today! </h3>
+
+<a href="/signup/"> Signup </a>
+<h3>Recent community posts</h3> 
+{% for post in posts %}
+<p><a href="/post/{{post.id}}/">{{ post.subject }}</a></p>
+{%endfor %}
+
+</div>
+{% endblock %}
