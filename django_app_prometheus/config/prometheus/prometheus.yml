@@ -31,4 +31,4 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
-        - targets: ['webapp.example.com:8000']
+        - targets: ['webapp.example.com:8000']   
