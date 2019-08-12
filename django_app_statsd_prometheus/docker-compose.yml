@@ -1,12 +1,11 @@
 version: '2'
 
 services:
-  webapp:
-    image: amitsaha/django_app_2
+  webapp.example.com:
+    image: amitsaha/til:statsd-prometheus
+    build: .
     container_name: webapp 
     expose:
       - 8000
     ports:
       - 8000:8000
-    volumes:
-      - ./src:/application:z

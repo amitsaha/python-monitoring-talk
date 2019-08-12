@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ["webapp.example.com"]
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap3',    
+    'bootstrap3',
     'tilweb.apps.TilwebConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'til.metrics_middlware.StatsdReporter',
+    'til.metrics_middleware.StatsdReporter',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'til.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }

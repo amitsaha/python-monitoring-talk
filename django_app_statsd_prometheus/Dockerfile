@@ -1,5 +1,5 @@
 FROM python:3.7-alpine
-ADD . /application
+ADD src /application
 WORKDIR /application
 RUN set -e; \
 	apk add --no-cache --virtual .build-deps \
@@ -7,9 +7,9 @@ RUN set -e; \
 		libc-dev \
 		linux-headers \
 	; \
-	pip install -r src/requirements.txt; \
+	pip install -r requirements.txt; \
 	apk del .build-deps;
 EXPOSE 8000
-VOLUME /application
 
-CMD gunicorn --workers 5 --bind 0.0.0.0:8000  demo.wsgi
+RUN chmod +x /application/start.sh
+CMD ["/application/start.sh"]

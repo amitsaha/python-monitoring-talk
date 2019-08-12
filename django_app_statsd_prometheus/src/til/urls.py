@@ -19,5 +19,4 @@ from django.contrib import admin
 urlpatterns = [
     url(r'', include('tilweb.urls')),
     url(r'^admin/', admin.site.urls),
-    url('', include('django_prometheus.urls')),
 ]
