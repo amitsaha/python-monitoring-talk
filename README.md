@@ -2,7 +2,7 @@
 
 ## Videos
 
-- [PyCOn 2018](https://www.youtube.com/watch?reload=9&v=R4kMwckrUlg)
+- [PyCon 2018](https://www.youtube.com/watch?reload=9&v=R4kMwckrUlg)
 
 ## Slides
 
