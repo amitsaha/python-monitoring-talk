@@ -9,9 +9,16 @@ services:
   stastd:
     image: prom/statsd-exporter
     container_name: statsd
+    command:
+      - --log.level=debug
+      - --statsd.mapping-config=/tmp/statsd_mapping.yml
+    volumes:
+      - "./config/statsd/mapping.yml:/tmp/statsd_mapping.yml:Z"
     expose:
       - 9125
       - 9102
+    ports:
+      - 9102:9102
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -20,6 +27,7 @@ services:
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--log.level=debug'
     expose:
       - 9090
     ports:

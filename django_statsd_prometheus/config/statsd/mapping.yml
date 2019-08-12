@@ -1,0 +1,8 @@
+mappings:
+- match: "django.request_latency_ms"
+  timer_type: summary
+  name: "django_request_latency_ms"
+  labels:
+    provider: "$2"
+    outcome: "$3"
+    job: "${1}_server"
