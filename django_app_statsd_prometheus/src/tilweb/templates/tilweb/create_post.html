@@ -1,0 +1,28 @@
+{% extends 'tilweb/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container"
+  <div class="jumbotron">
+    <h1>Create your post</h1> 
+    <p>TIL: Your personal learning journal</p>
+    </div>
+</div>
+<div class="container" style="width:40%">
+<form action="/post/" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "star" %} Post
+    </button>
+    {% endbuttons %} 
+</form>
+</div>
+
+<div class="container" style="width:40%">
+<h3>Your recent posts</h3> 
+{% for post in posts %}
+<p><a href="/post/{{post.id}}/">{{ post.subject }}</a></p>
+{%endfor %}
+{% endblock %}

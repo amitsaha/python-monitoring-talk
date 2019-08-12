@@ -4,6 +4,8 @@ See `src` for the application code and top level README for the description of t
 point of view.
 
 
+https://datadogpy.readthedocs.io/en/latest/
+
 ## Building Docker image
 
 The Python 3 based [Dockerfile](Dockerfile.py3) uses an Alpine Linux base image
