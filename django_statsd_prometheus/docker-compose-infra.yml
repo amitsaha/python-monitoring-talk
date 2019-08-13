@@ -7,13 +7,10 @@ volumes:
 
 services:
   stastd:
-    image: prom/statsd-exporter
+    image: prom/statsd-exporter:v0.12.2
     container_name: statsd
     command:
       - --log.level=debug
-      - --statsd.mapping-config=/tmp/statsd_mapping.yml
-    volumes:
-      - "./config/statsd/mapping.yml:/tmp/statsd_mapping.yml:Z"
     expose:
       - 9125
       - 9102

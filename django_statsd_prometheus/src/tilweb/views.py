@@ -10,6 +10,8 @@ from .forms import TilForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 
+from django.views.decorators.cache import cache_page
+
 
 def index(request):
     if not request.user.is_authenticated:
@@ -132,6 +134,7 @@ def create_post(request):
         return HttpResponseNotAllowed('{0} Not allowed'.format(request.method))
 
 
+@cache_page(60*15)
 def show_post(request, post_id=None):
     post = Post.objects.filter(id=post_id)[0]
     # if the post is not public, only viewable by the author

@@ -1,7 +1,8 @@
 # Example Django application
 
 See `src` for the application code and top level README for the description of this repo from a functionality
-point of view.
+point of view. This demo shows how we can use the statsd exporter to monitor a Django application using
+prometheus.
 
 
 ## Building Docker image
