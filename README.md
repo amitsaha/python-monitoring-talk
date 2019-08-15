@@ -6,8 +6,10 @@
 
 ## Slides
 
+- [Sydney Django, August 2019](./slides/Django-monitoring-with-prometheus.pdf)
 - [PyCon 2018](./slides/pycon-2018.pdf)
 - [Sydney Python Meetup - March, 2018](./slides/sypy.pdf)
+
 
 ## Articles
 
