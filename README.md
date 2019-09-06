@@ -1,4 +1,26 @@
+# Table of contents
+
+* [Materials for my talks/articles on Python monitoring](./README.md#materials-for-my-talksarticles-on-python-monitoring)
+  * [Videos](./README.md#videos)
+  * [Slides](./README.md#slides)
+  * [Articles](./README.md#articles)
+  * [Tips and Tricks](./README.md#tips-and-tricks)
+  * [Playing with the demos](./README.md#playing-with-the-demos)
+    * [VM Setup on Windows 10 with Hyper-V](./README.md#vm-setup-on-windows-10-with-hyper-v)
+    * [VM Setup on Windows/Linux/OS X - VirtualBox](./README.md#vm-setup-on-windowslinuxos-x---virtualbox)
+    * [Miscellaneous notes](./README.md#miscellaneous-notes)
+      * [Docker tips](./README.md#docker-tips)
+      * [ab tips](./README.md#ab-tips)
+  * [Learn more](./README.md#learn-more)
+      * [General](./README.md#general)
+      * [Statsd/Graphite](./README.md#statsdgraphite)
+      * [Prometheus](./README.md#prometheus)
+      * [Readings: Doing things right](./README.md#doing-things-right)
+
+
 # Materials for my talks/articles on Python monitoring
+
+These are some of the materials that I have prepared and referred to while exploring monitoring in Python.
 
 ## Videos
 
@@ -100,27 +122,6 @@ If it doesn't work, please file an issue with OS + VM details.
 
 ## Miscellaneous notes
 
-
-
-### Docker tips
-
-Rebuild an image:
-
-```
-$ sudo docker-compose -f docker-compose.yml build
-```
-
-If you see errors such as:
-
-```ERROR: for webapp  Cannot create container for service webapp: Conflict. The container name "/webapp" is already in use by container "2e452aa1622b053fe33c6fe508ddce3f207e8a8c7446564f86e6f31c2d81466c". You have to remove (or rename) that container to be able to reuse that name.```
-
-You can do:
-
-```
-$ sudo docker rm webapp
-```
-
-
 ### ab tips
 
 Make 100 requests with a concurrency of 3:
@@ -157,7 +158,7 @@ The following resources are some of the ones that I found very useful:
 - [Why are Prometheus histograms cumulative?](https://www.robustperception.io/why-are-prometheus-histograms-cumulative/)
 - [Capturing spikes](https://utcc.utoronto.ca/~cks/space/blog/sysadmin/PrometheusSubqueriesForSpikes)
 
-## Stage 3 Readings: Doing things right
+## Doing things right
 
 
 - [How not to measure latency](https://www.youtube.com/watch?v=lJ8ydIuPFeU&feature=youtu.be)
