@@ -8,14 +8,11 @@
   * [Playing with the demos](./README.md#playing-with-the-demos)
     * [VM Setup on Windows 10 with Hyper-V](./README.md#vm-setup-on-windows-10-with-hyper-v)
     * [VM Setup on Windows/Linux/OS X - VirtualBox](./README.md#vm-setup-on-windowslinuxos-x---virtualbox)
-    * [Miscellaneous notes](./README.md#miscellaneous-notes)
-      * [Docker tips](./README.md#docker-tips)
-      * [ab tips](./README.md#ab-tips)
-  * [Learn more](./README.md#learn-more)
-      * [General](./README.md#general)
-      * [Statsd/Graphite](./README.md#statsdgraphite)
-      * [Prometheus](./README.md#prometheus)
-      * [Readings: Doing things right](./README.md#doing-things-right)
+* [Learn more](./README.md#learn-more)
+   * [General](./README.md#general)
+   * [Statsd/Graphite](./README.md#statsdgraphite)
+   * [Prometheus](./README.md#prometheus)
+   * [Readings: Doing things right](./README.md#doing-things-right)
 
 
 # Materials for my talks/articles on Python monitoring
@@ -120,22 +117,12 @@ $ 127.0.0.1:port
 
 If it doesn't work, please file an issue with OS + VM details.
 
-## Miscellaneous notes
 
-### ab tips
-
-Make 100 requests with a concurrency of 3:
-
-```
-$ ab -n 100 -c 3 http://localhost:5000/test/
-
-```
-
-## Learn more
+# Learn more
 
 The following resources are some of the ones that I found very useful:
 
-### General
+## General
 
 - [Monitoring Distributed Systems](https://landing.google.com/sre/book/chapters/monitoring-distributed-systems.html)
 - [Monitoring best practices](http://www.integralist.co.uk/posts/monitoring-best-practices/?imm_mid=0fbebf&cmp=em-webops-na-na-newsltr_20180309)
@@ -144,11 +131,11 @@ The following resources are some of the ones that I found very useful:
 - [Avoid the wall of graphs](https://www.robustperception.io/avoid-the-wall-of-graphs)
 - [Latency primer](https://igor.io/latency/)
 
-### Statsd/Graphite
+## Statsd/Graphite
 
 - [statsd metric types](https://github.com/etsy/statsd/blob/master/docs/metric_types.md)
 
-### Prometheus
+## Prometheus
 
 - [Prometheus metric types](https://prometheus.io/docs/concepts/metric_types/)
 - [How does a prometheus gauge work?](https://www.robustperception.io/how-does-a-prometheus-gauge-work/)
