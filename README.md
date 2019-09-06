@@ -1,5 +1,8 @@
 # Table of contents
 
+This repo contains the materials that I have prepared and referred to while exploring monitoring in Python.
+
+
 * [Materials for my talks/articles on Python monitoring](./README.md#materials-for-my-talksarticles-on-python-monitoring)
   * [Videos](./README.md#videos)
   * [Slides](./README.md#slides)
@@ -16,8 +19,6 @@
 
 
 # Materials for my talks/articles on Python monitoring
-
-These are some of the materials that I have prepared and referred to while exploring monitoring in Python.
 
 ## Videos
 
