@@ -29,3 +29,6 @@ If you are using the DogStatsd Python client:
 
 - Report all timing metrics in milliseconds
 - If you are using the `timed()` context manager, initialize the statstd client using `use_ms`
+
+For timing data, statsd exporter converts the data into seconds before exporting. So when you plot in grafana,
+the units for timing data is always in seconds. ([PR updating README for statsd exporter](https://github.com/prometheus/statsd_exporter/pull/262))
