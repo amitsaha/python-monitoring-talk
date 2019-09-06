@@ -19,6 +19,10 @@
 - [Monitoring Your Synchronous Python Web Applications Using Prometheus](https://blog.codeship.com/monitoring-your-synchronous-python-web-applications-using-prometheus/)
 - [Monitoring Your Asynchronous Python Web Applications Using Prometheus](https://blog.codeship.com/monitoring-your-asynchronous-python-web-applications-using-prometheus/)
 
+## Tips and Tricks
+
+- [Miscellaneous notes](./miscellaneous-notes.md)
+
 ## Playing with the demos
 
 I recommend using a VM to play with the demos. This repo ships with a [Vagrantfile](./Vagrantfile)
