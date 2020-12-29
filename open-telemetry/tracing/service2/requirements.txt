@@ -1,0 +1,8 @@
+Flask
+uwsgi
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-instrumentation-flask
+opentelemetry-instrumentation-requests
+opentelemetry-instrumentation-mysql
+opentelemetry-exporter-jaeger

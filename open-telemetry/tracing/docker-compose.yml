@@ -1,0 +1,43 @@
+services:
+  service1:
+    build: ./service1
+    ports:
+      - "5000:5000"
+    links:
+      - service2
+      - jaeger
+    depends_on:
+      - service2
+      - jaeger
+  service2:
+    build: ./service2
+    links:
+      - db
+      - jaeger
+    depends_on:
+      - db
+      - jaeger
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: service2
+      MYSQL_USER: joe
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+  jaeger:
+    image: jaegertracing/all-in-one
+    ports:
+      - "16686:16686"
+      - "6831:6831/udp"
+  client:
+    links:
+      - service1
+    depends_on:
+      - service1
+    build:
+      context: ./
+      dockerfile: Dockerfile-client
