@@ -64,3 +64,10 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-client
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"

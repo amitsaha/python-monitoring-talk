@@ -29,3 +29,6 @@ service:
       receivers: [otlp]
       processors: [attributes]
       exporters: [opencensus, logging]
+    metrics:
+      receivers: [otlp]  
+      exporters: [opencensus, logging]

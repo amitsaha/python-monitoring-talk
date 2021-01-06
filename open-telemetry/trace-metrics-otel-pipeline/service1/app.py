@@ -14,6 +14,15 @@ from opentelemetry.sdk.trace.export import BatchExportSpanProcessor
 
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
+
+
+from opentelemetry import metrics, trace
+from opentelemetry.ext.opencensusexporter.metrics_exporter import (
+    OpenCensusMetricsExporter,
+)
+from opentelemetry.sdk.metrics import Counter, MeterProvider
+from opentelemetry.sdk.metrics.export.controller import PushController
+
 from flask import Flask, request
 import requests
 
@@ -25,6 +34,35 @@ otlp_exporter = OTLPSpanExporter(endpoint="otel-agent:4317", insecure=True)
 span_processor = BatchExportSpanProcessor(otlp_exporter)
 trace.get_tracer_provider().add_span_processor(span_processor)
 
+
+# create a CollectorMetricsExporter
+metric_exporter = OpenCensusMetricsExporter(
+    # endpoint="myCollectorUrl:55678",
+    service_name="service1",
+    # host_name="machine/container name",
+)
+
+# Meter is responsible for creating and recording metrics
+metrics.set_meter_provider(MeterProvider())
+meter = metrics.get_meter(__name__)
+# controller collects metrics created from meter and exports it via the
+# exporter every interval
+controller = PushController(meter, metric_exporter, 5)
+
+requests_counter = meter.create_metric(
+    name="requests",
+    description="number of requests",
+    unit="1",
+    value_type=int,
+    metric_type=Counter,
+    label_keys=("environment",),
+)
+# Labels are used to identify key-values that are associated with a specific
+# metric that you want to record. These are useful for pre-aggregation and can
+# be used to store custom dimensions pertaining to a metric
+labels = {"environment": "staging"}
+
+
 app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
@@ -34,6 +72,7 @@ def do_stuff():
 
 @app.route('/')
 def index():
+    requests_counter.add(1, labels)
     with tracer.start_as_current_span("service2-request"):
         data = do_stuff()
     return data.text, 200
