@@ -12,12 +12,7 @@ exporters:
       "x-honeycomb-team": "SDK-KEY"
       "x-honeycomb-dataset": "otel-demo-python"
   prometheus:
-    endpoint: "prometheus:1234"
-    namespace: test-space
-    const_labels:
-      label1: value1
-      label2: spaced value
-    send_timestamps: true
+    endpoint: "0.0.0.0:8889"
 
 processors:
   batch:
@@ -36,8 +31,7 @@ service:
     traces:
       receivers: [opencensus]
       processors: [batch, queued_retry]
-      exporters: [logging, jaeger, otlp]
+      exporters: [jaeger, otlp]
     metrics:
       receivers: [opencensus]
-      processors: [batch, queued_retry]
       exporters: [logging, prometheus]

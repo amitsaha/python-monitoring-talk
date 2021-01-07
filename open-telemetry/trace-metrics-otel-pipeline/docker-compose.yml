@@ -1,19 +1,31 @@
 services:
   service1:
     build: ./service1
-    ports:
-      - "5000:5000"
     depends_on:
       - service2
       - otel-agent
     links:
       - db
       - otel-agent
+    environment:
+      OTEL_AGENT: otel-agent
+  service1-2:
+    build: ./service1
+    depends_on:
+      - service2
+      - otel-agent
+    links:
+      - db
+      - otel-agent
+    environment:
+      OTEL_AGENT: otel-agent
   service2:
     build: ./service2
     depends_on:
       - db
       - otel-agent
+    environment:
+      OTEL_AGENT: otel-agent 
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -33,19 +45,15 @@ services:
     links:
       - otel-collector
     depends_on:
-      - otel-collector
+      - otel-collector  
   otel-collector:
     image: otel/opentelemetry-collector
     command: ["--config=/etc/otel-collector-config.yml"]
     volumes:
       - ./otel-collector-config.yml:/etc/otel-collector-config.yml
     ports:
-      - "1888:1888"   # pprof extension
       - "8888:8888"   # Prometheus metrics exposed by the collector
       - "8889:8889"   # Prometheus exporter metrics
-      - "13133:13133" # health_check extension
-      - "55678"       # OpenCensus receiver
-      - "55670:55680" # zpages extension
     depends_on:
       - jaeger-all-in-one
     links:
@@ -59,14 +67,17 @@ services:
   client:
     links:
       - service1
+      - service1-2
     depends_on:
       - service1
+      - service1-2
     build:
       context: ./
       dockerfile: Dockerfile-client
-  prometheus:
-    container_name: prometheus
+  prometheus-server:    
     image: prom/prometheus:latest
+    links:
+      - otel-collector
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
