@@ -1,0 +1,5 @@
+FROM python:3.9
+RUN apt-get -y update && apt-get -y install apache2-utils
+ADD ./make-requests.sh /make-requests.sh
+
+CMD ["/bin/sh", "/make-requests.sh"]

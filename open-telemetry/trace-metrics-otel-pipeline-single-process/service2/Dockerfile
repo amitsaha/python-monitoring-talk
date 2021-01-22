@@ -5,4 +5,4 @@ RUN pip install mysql-connector
 ADD . /application
 WORKDIR /application
 RUN pip install -r requirements.txt
-CMD ["uwsgi", "--http", ":5000",  "--mount", "/myapplication=app:app", "--enable-threads", "--processes", "5"]
+CMD ["uwsgi", "--http", ":5000",  "--mount", "/myapplication=app:app", "--processes", "1"]

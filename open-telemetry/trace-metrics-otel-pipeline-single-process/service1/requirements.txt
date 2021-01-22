@@ -1,0 +1,11 @@
+Flask==1.1.2
+uwsgi
+opentelemetry-instrumentation-flask
+opentelemetry-instrumentation-requests
+opentelemetry-exporter-otlp
+opentelemetry-exporter-opencensus
+grpcio
+opencensus-proto
+opentelemetry-api
+opentelemetry-sdk
+
